@@ -15,4 +15,6 @@ install:
   - pip install ansible
 
 script:
+  - pwd
+  - ls
   - ansible-playbook provision/site.yml --connection=local --become
