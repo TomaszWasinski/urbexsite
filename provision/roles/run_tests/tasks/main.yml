@@ -1,0 +1,7 @@
+---
+- name: Run tests
+  django_manage:
+    command: test --noinput
+    app_path: "{{ project_path }}/backend"
+    virtualenv: "{{ venv_path }}"
+  environment: "{{ django_env }}"
