@@ -8,13 +8,13 @@
 - name: Download Node.js install script
   become: yes
   get_url:
-    url: https://deb.nodesource.com/setup_5.x
-    dest: /tmp/node_setup_5.x
+    url: https://deb.nodesource.com/setup_6.x
+    dest: /tmp/node_setup_6.x
     mode: 0755
 
 - name: Add Node.js repository
   become: yes
-  shell: /tmp/node_setup_5.x
+  shell: /tmp/node_setup_6.x
 
 - name: Install Node.js
   become: yes
