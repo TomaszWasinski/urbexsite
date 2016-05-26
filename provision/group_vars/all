@@ -1,5 +1,5 @@
 project_name: urbexsite
-project_path: /src/shopping_list
+project_path: /src/urbexsite
 venv_path: "{{ project_path }}/backend/venv"
 
 nginx_host:
