@@ -1,7 +1,6 @@
 ---
 - name: Run tests
-  django_manage:
-    command: test --noinput
-    app_path: "{{ project_path }}/backend"
-    virtualenv: "{{ venv_path }}"
-  environment: "{{ django_env }}"
+  shell: source ./venv/bin/activate && py.test --create-db
+  args:
+    chdir: "{{ project_path }}/backend"
+    executable: /bin/bash
