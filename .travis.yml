@@ -18,4 +18,5 @@ before_script:
   - sudo /etc/init.d/postgresql stop
 
 script:
+  - ls
   - ansible-playbook -i "qa," provision/site.yml --connection=local
