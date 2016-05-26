@@ -15,4 +15,4 @@ install:
   - pip install ansible
 
 script:
-  - ansible-playbook -i "localhost=qa," provision/site.yml --connection=local
+  - ansible-playbook -i "qa," provision/site.yml --connection=local
