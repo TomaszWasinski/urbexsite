@@ -14,5 +14,8 @@ before_install:
 install:
   - pip install ansible
 
+before_script:
+  - sudo /etc/init.d/postgresql stop
+
 script:
   - ansible-playbook -i "qa," provision/site.yml --connection=local
