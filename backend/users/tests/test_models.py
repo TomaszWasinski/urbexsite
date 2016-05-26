@@ -17,6 +17,7 @@ class UserModelTests(TestCase):
 
 class UserManagerTests(TestCase):
     def test_superuser_creation(self):
+        assert False
         self.assertEqual(User.objects.count(), 0)
         User.objects.create_superuser(email='admin@gmail.com', password='Pass12#$%')
         self.assertEqual(User.objects.count(), 1)
