@@ -5,6 +5,7 @@ from ..models import User
 
 
 class UserModelTests(TestCase):
+    
     def test_user_creation_is_valid(self):
         user = User(email='test_user@gmail.com', password='Pass12#$%', username='test_user')
         self.assertIsNone(user.full_clean())
@@ -16,8 +17,8 @@ class UserModelTests(TestCase):
 
 
 class UserManagerTests(TestCase):
+
     def test_superuser_creation(self):
-        assert False
         self.assertEqual(User.objects.count(), 0)
         User.objects.create_superuser(email='admin@gmail.com', password='Pass12#$%')
         self.assertEqual(User.objects.count(), 1)

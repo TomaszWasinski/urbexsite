@@ -11,7 +11,6 @@
 - hosts: qa
   roles:
     - run_tests
-    - uwsgi
 
 - hosts: production
   roles:
