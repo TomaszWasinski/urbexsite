@@ -4,17 +4,18 @@ from .models import User
 
 
 class UserCreationSerializer(serializers.ModelSerializer):
+    
     confirm_password = serializers.CharField(allow_blank=False, required=True, write_only=True, )
 
     class Meta:
         model = User
-        fields = ('email', 'username', 'password', 'confirm_password', 'name', 'last_name', 'birth_date', 'gender',)
+        fields = ('email', 'username', 'password', 'confirm_password', )
         extra_kwargs = {'password': {'write_only': True}}
 
     def validate(self, data):
         validate_password_strength(data.get('password'))
         if data.get('password') != data.pop('confirm_password'):
-            raise serializers.ValidationError('Those passwords don\'t match.')
+            raise serializers.ValidationError('Passwords don\'t match.')
         return data
 
 

@@ -5,6 +5,7 @@ from django.db import models
 
 
 class CustomUserManager(BaseUserManager):
+
     def create(self, email, password=None, **kwargs):
         if not email:
             raise ValueError('Users must have a valid email address.')
@@ -37,12 +38,10 @@ GENDER_CHOICES = (
 
 
 class User(AbstractBaseUser):
-    email = models.EmailField(max_length=100, unique=True, db_index=True)
-    username = models.CharField(max_length=100, unique=True)
-    name = models.CharField(max_length=100, blank=True, null=True)
-    last_name = models.CharField(max_length=100, blank=True, null=True)
+
+    email = models.EmailField(unique=True, db_index=True)
+    username = models.CharField(max_length=45, unique=True)
     date_joined = models.DateField(auto_now_add=True, editable=False, blank=True, null=True)
-    birth_date = models.DateField(null=True, blank=True)
     gender = models.CharField(max_length=1, blank=True, null=True, choices=GENDER_CHOICES)
     activation_key = models.UUIDField(default=uuid.uuid4, editable=False)
     is_active = models.BooleanField(default=False)
@@ -58,10 +57,7 @@ class User(AbstractBaseUser):
         return self.email
 
     def get_full_name(self):
-        return self.last_name
-
-    def get_short_name(self):
-        return self.name
+        return self.username
 
     def has_perm(self, perm, obj=None):
         return self.is_superuser
