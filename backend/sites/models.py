@@ -10,12 +10,14 @@ class Site(models.Model):
     updated = models.DateTimeField(auto_now=True)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL)
     updated_by = models.ForeignKey(settings.AUTH_USER_MODEL)
+    latitude = models.DecimalField(max_digits=9, decimal_places=6)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6)
+
     # TODO:
         # discussion
-        # location
         # province
         # album
-        # visitors
+        # visitors OR visits
         # category
         # privilages
         # edit history?
