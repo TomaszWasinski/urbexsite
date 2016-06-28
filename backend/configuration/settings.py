@@ -19,7 +19,7 @@ DEBUG = get_env_variable('DEBUG')
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'kr%c(bvk1!w0*lr2fpq2+7e(67b-p&3)nxb_$#6_s1$j1bu49!')
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split()
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split()
 
 INSTALLED_APPS = [
     'django.contrib.admin',
