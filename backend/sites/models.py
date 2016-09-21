@@ -1,9 +1,20 @@
 from django.db import models
 from django.conf import settings
+from enum import Enum
+
+
+class SiteStatus(Enum):
+    active = "Active"
+    inactive = "Non-existent"
+    abandoned = "Abandoned"
+
+
+class Categories(models.Model):
+    name = models.CharField(max_length=20)
+    description = models.TextField(blank=True)
 
 
 class Site(models.Model):
-
     name = models.CharField(max_length=500)
     description = models.TextField(blank=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -12,7 +23,7 @@ class Site(models.Model):
     updated_by = models.ForeignKey(settings.AUTH_USER_MODEL)
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default=ABANDONED)
+    status = models.CharField(max_length=10, choices=SiteStatus, default=SiteStatus.abandoned)
     score = models.PositiveSmallIntegerField(null=True)
     category = models.ManyToManyField(Categories)
     # TODO:
@@ -26,20 +37,5 @@ class Site(models.Model):
     # more TODO:
     # privilages system
 
-    ACTIVE = 'active'
-    INACTIVE = 'inactive'
-    ABANDONED = 'abandoned'
-    STATUS_CHOICES = (
-        (ACTIVE, 'Active'),
-        (INACTIVE, 'Inactive'),
-        (ABANDONED, 'Abandoned')
-    )
-
     def compute_score(self):
         pass # TODO after mergeing visits app
-
-
-class Categories(models.Model):
-
-    name = models.CharField(max_length=20)
-    description = models.TextField(blank=True)

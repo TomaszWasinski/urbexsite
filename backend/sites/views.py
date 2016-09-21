@@ -1,3 +1,9 @@
 from django.shortcuts import render
 
-# Create your views here.
+from rest_framework.viewsets import ReadOnlyModelViewSet
+
+
+class SitesViewSet(ReadOnlyModelViewSet):  # Temporarely ReadOnly
+
+    queryset = Sites.objects.all()
+    
