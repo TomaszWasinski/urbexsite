@@ -1,5 +1,7 @@
+import mongoengine as me
 from django.db import models
 from django.conf import settings
+from django.utils import timezone
 from enum import Enum
 
 
@@ -14,18 +16,18 @@ class Categories(models.Model):
     description = models.TextField(blank=True)
 
 
-class Site(models.Model):
-    name = models.CharField(max_length=500)
-    description = models.TextField(blank=True)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-    created_by = models.ForeignKey(settings.AUTH_USER_MODEL)
-    updated_by = models.ForeignKey(settings.AUTH_USER_MODEL)
+class Site(me.Document):
+    name = me.StringField(max_length=500, required=True)
+    description = me.StringField()
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
     status = models.CharField(max_length=10, choices=SiteStatus, default=SiteStatus.abandoned)
     score = models.PositiveSmallIntegerField(null=True)
-    category = models.ManyToManyField(Categories)
+    category = mo
+    created_by =
+    updated_by =
+    created = me.DateTimeField(required=True)
+    modified = me.DateTimeField(required=timezone.now)
     # TODO:
         # discussion
         # province
@@ -38,4 +40,4 @@ class Site(models.Model):
     # privilages system
 
     def compute_score(self):
-        pass # TODO after mergeing visits app
+        pass  # TODO after mergeing visits app
