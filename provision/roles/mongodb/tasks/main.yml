@@ -33,6 +33,12 @@
     dest: /tmp/setup_db.js
     force: yes
 
+- name: Start MongoDB
+  become: yes
+  service:
+    name: mongod
+    state: restarted
+
 - name: Setup DB
   become: yes
   shell: mongo admin < /tmp/setup_db.js
