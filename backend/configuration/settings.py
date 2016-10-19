@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     # extensions
     'django_extensions',
     'rest_framework',
+    'rest_framework_mongoengine',
 ]
 
 MIDDLEWARE_CLASSES = [

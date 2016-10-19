@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from rest_framework_mongoengine.viewsets import ModelViewSet
 
-from rest_framework.viewsets import ReadOnlyModelViewSet
+from .models import Site
+from .serializers import SiteSerializer
 
 
-class SitesViewSet(ReadOnlyModelViewSet):  # Temporarely ReadOnly
-
-    queryset = Sites.objects.all()
-    
+class SiteViewSet(ModelViewSet):
+    queryset = Site.objects.all()
+    serializer_class = SiteSerializer
