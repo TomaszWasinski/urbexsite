@@ -33,11 +33,20 @@
     dest: /tmp/setup_db.js
     force: yes
 
-- name: Start MongoDB
+- name: Reconfigure mongod
+  become: yes
+  template:
+    src: mongod.conf.j2
+    dest: /etc/mongod.conf
+    force: yes
+
+- name: Restart MongoDB
   become: yes
   service:
     name: mongod
     state: restarted
+
+- pause: seconds=30
 
 - name: Setup DB
   become: yes
