@@ -11,13 +11,3 @@ class SiteTests:
         site = Site(name='test_site')
         site.save()
         assert Site.objects.first().name == site.name
-
-    def test_object_creation2(self):
-        site = Site(name='test_site2')
-        site.save()
-        assert Site.objects.first().name == site.name
-
-    def test_object_creation3(self):
-        site = Site(name='test_site3')
-        site.save()
-        assert Site.objects.first().name == site.name
