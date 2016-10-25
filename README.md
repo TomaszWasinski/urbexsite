@@ -4,7 +4,7 @@ Urbex Site
 
 **This is my latest playground**, but who knows what will come out of it? ;)
 
-A lot of the **code is scattered on many branches**, so pls. do not just checkout master and develop.
+Simultaneously I'm developing a [fork of this project ported to MongoDB](git@github.com:wasinski/urbexsite-mongo.git)
 
 About
 ------
@@ -18,11 +18,10 @@ open to vandals, taggers, scrappers etc., because of that locations get ruined, 
 - Django
 - Django REST Framework
 - Postgresql
-- MongoDB with Mongoengine
 - Redis
 - Celery
 
-  Testing: Pytest, Factoryboy, Mongomock
+  Testing: Pytest, Factoryboy
 
   Provision: Vagrant & Ansible
 
