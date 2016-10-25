@@ -1,14 +1,14 @@
-import mongoengine as me
 from django.db import models
+from django.conf import settings
 from django.utils import timezone
 
 
-class Category(me.EmbeddedDocument):
-    name = me.StringField(max_length=20, required=True)
-    description = me.StringField()
+class Category(models.Model):
+    name = models.CharField(max_length=20)
+    description = models.TextField(null=True, blank=True)
 
 
-class Location(me.Document):
+class Location(models.Model):
     ABANDONED = 'abandoned'
     INACTIVE = 'inactive'
     ACTIVE = 'active'
@@ -18,21 +18,14 @@ class Location(me.Document):
         (ACTIVE, 'Active'),
     )
 
-    name = me.StringField(max_length=500, required=True)
-    categories = me.EmbeddedDocumentListField(Category)
-    description = me.StringField()
-    coordinates = me.GeoPointField()
-    status = me.StringField(max_length=10, choices=location_status, default=ABANDONED)
-    modified = me.DateTimeField(required=True, default=timezone.now)
-
-    @property
-    def created(self):
-        return self.id.generation_time
+    name = models.CharField(max_length=500)
+    categories = models.ManyToManyField(Category)
+    description = models.TextField()
+    # coordinates = models.GeoPointField()
+    status = models.CharField(max_length=10, choices=location_status, default=ABANDONED)
+    # created_by = models.ForeignKey(settings.AUTH_USER_MODEL)
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
-
-    @classmethod
-    def update_modified(cls, sender, document, **kwargs):
-        """ used as a pre_save signal """
-        document.modified = timezone.now()

@@ -1,8 +1,0 @@
-use {{ mongodb.name }}
-db.createUser(
-   {
-     user: "{{ mongodb.user }}",
-     pwd: "{{ mongodb.password }}",
-     roles: [ "readWrite", "dbAdmin" ]
-   }
-)

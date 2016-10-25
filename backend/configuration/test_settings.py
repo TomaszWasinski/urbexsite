@@ -1,4 +1,3 @@
-import mongoengine as me
 from .settings import *
 
 
@@ -16,5 +15,3 @@ PASSWORD_HASHERS = (
 
 DEBUG = False
 TEMPLATE_DEBUG = False
-
-me.connection.disconnect()  # disconnect development db first

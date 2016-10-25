@@ -1,4 +1,4 @@
-from rest_framework_mongoengine.viewsets import ModelViewSet
+from rest_framework.viewsets import ModelViewSet
 
 from .models import Location
 from .serializers import LocationSerializer

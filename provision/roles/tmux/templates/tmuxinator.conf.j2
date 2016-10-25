@@ -7,6 +7,6 @@ pre_window: source {{ venv_path }}/bin/activate{% for key, value in django_env.i
 
 windows:
   - backend: cd {{ project_path }}/backend && python manage.py runserver 0.0.0.0:8000
-  - frontend: cd {{ project_path }}/frontend && npm run start
+#  - frontend: cd {{ project_path }}/frontend && npm run start
   - worker: cd {{ project_path }}/backend && celery -A configuration worker -l debug
   - shell: cd .

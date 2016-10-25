@@ -1,9 +1,7 @@
-import mongoengine as me
 import pytest
 from rest_framework import status
 from rest_framework.test import APIClient
 
-from utils.fixtures import mongo
 from ..models import Location
 from ..factories import LocationFactory, CategoryFactory
 
@@ -11,7 +9,7 @@ from ..factories import LocationFactory, CategoryFactory
 client = APIClient()
 
 
-@pytest.mark.usefixtures('mongo')
+@pytest.mark.django_db
 class SiteViewSetTests:
 
     @pytest.fixture
@@ -24,8 +22,8 @@ class SiteViewSetTests:
         assert response.status_code == status.HTTP_200_OK
         assert response.data == []
 
-    def test_list_view_with_2_objects_created(self, url):
-        LocationFactory.create_batch(2)
+    def test_list_view_with_1_object_created(self, url):
+        LocationFactory()
         response = client.get(url)
         assert response.status_code == status.HTTP_200_OK
-        assert len(response.data) == 2
+        assert len(response.data) == 1

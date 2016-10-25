@@ -1,6 +1,6 @@
 import factory as f
 import factory.fuzzy as fuzzy
-from factory.mongoengine import MongoEngineFactory
+from factory.django import DjangoModelFactory
 from faker import Factory as FakerFactory
 
 from .models import Category, Location
@@ -8,26 +8,24 @@ from .models import Category, Location
 
 faker = FakerFactory.create()
 
+# TODO
+# def get_random_coordinates():
+#     coord_generator = fuzzy.FuzzyFloat(-180.0, 180.0)
+#     return [coord_generator.fuzz(), coord_generator.fuzz()]
 
-def get_random_coordinates():
-    coord_generator = fuzzy.FuzzyFloat(-180.0, 180.0)
-    return [coord_generator.fuzz(), coord_generator.fuzz()]
 
-
-class CategoryFactory(MongoEngineFactory):
+class CategoryFactory(DjangoModelFactory):
     name = f.Sequence(lambda n: 'category %s' % n)
     description = f.LazyAttribute(lambda x: faker.text())
 
     class Meta:
         model = Category
-        inline_args = ('name', )
 
 
-class LocationFactory(MongoEngineFactory):
+class LocationFactory(DjangoModelFactory):
     name = f.Sequence(lambda n: 'location %s' % n)
     description = f.LazyAttribute(lambda x: faker.text())
-    coordinates = f.LazyAttribute(lambda x: get_random_coordinates())
+    # TODO coordinates = f.LazyAttribute(lambda x: get_random_coordinates())
 
     class Meta:
         model = Location
-        inline_args = ('name', )
