@@ -89,11 +89,12 @@ WSGI_APPLICATION = 'configuration.wsgi.application'
 
 DOMAIN = os.environ.get('DOMAIN', 'http://0.0.0.0:8000')
 
+
+# Email settings
 EMAILS = {
     'registration': 'registration@domain.com',
     'notifications': 'notifications@domain.com',
 }
-
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 25
@@ -102,6 +103,8 @@ EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
 DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL")
 
+
+# Database settings
 if os.environ.get('DATABASE', None) == 'POSTGRESQL':
     DATABASES = {
         'default': {
@@ -113,7 +116,7 @@ if os.environ.get('DATABASE', None) == 'POSTGRESQL':
             'PORT': '',
         },
     }
-else:
+else:  # used when running tests
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -138,8 +141,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Internationalization
-# https://docs.djangoproject.com/en/1.9/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
@@ -147,10 +148,7 @@ USE_L10N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
-
 STATIC_URL = '/static/'
-
 STATIC_ROOT = os.environ.get('STATIC_ROOT')
 
 

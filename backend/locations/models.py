@@ -23,7 +23,7 @@ class Location(models.Model):
     description = models.TextField()
     # coordinates = models.GeoPointField()
     status = models.CharField(max_length=10, choices=location_status, default=ABANDONED)
-    # created_by = models.ForeignKey(settings.AUTH_USER_MODEL)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 

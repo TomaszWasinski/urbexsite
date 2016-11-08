@@ -1,9 +1,6 @@
-import json
 import pytest
 
-from configuration.celery import app
 from django.core import mail
-from django.conf import settings
 from django.contrib.auth import get_user_model
 from rest_framework import status
 from rest_framework.test import APIClient

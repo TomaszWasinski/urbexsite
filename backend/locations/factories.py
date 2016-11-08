@@ -3,6 +3,7 @@ import factory.fuzzy as fuzzy
 from factory.django import DjangoModelFactory
 from faker import Factory as FakerFactory
 
+from users.factories import UserFactory
 from .models import Category, Location
 
 
@@ -25,6 +26,7 @@ class CategoryFactory(DjangoModelFactory):
 class LocationFactory(DjangoModelFactory):
     name = f.Sequence(lambda n: 'location %s' % n)
     description = f.LazyAttribute(lambda x: faker.text())
+    created_by = f.SubFactory(UserFactory)
     # TODO coordinates = f.LazyAttribute(lambda x: get_random_coordinates())
 
     class Meta:
