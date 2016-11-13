@@ -20,7 +20,7 @@
   pip:
     requirements: "{{ project_path }}/backend/requirements.txt"
     virtualenv: "{{ venv_path }}"
-    virtualenv_python: python3.4
+#    virtualenv_python: python3.4
 
 # - name: Run migrations
 #   django_manage:
