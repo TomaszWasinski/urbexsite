@@ -1,4 +1,3 @@
-project_path: "/home/travis/build/wasinski/{{ project_name }}"
 nginx_host:
 frontend_node_env: DEV
 domain:
