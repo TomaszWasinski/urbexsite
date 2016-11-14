@@ -10,8 +10,8 @@
     - redis-server
 
 - name: Install pip packages
-#   become: yes
-  pip: name={{ item }} state=latest executable=pip3
+  become: yes
+  pip: name={{ item }} state=latest executable=pip3 umask=0022
   with_items:
     - virtualenv
     - pip
@@ -21,6 +21,7 @@
     requirements: "{{ project_path }}/backend/requirements.txt"
     virtualenv: "{{ venv_path }}"
     virtualenv_python: python3
+    umask: 0022
 
 # - name: Run migrations
 #   django_manage:
