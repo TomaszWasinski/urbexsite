@@ -21,7 +21,7 @@
     requirements: "{{ project_path }}/backend/requirements.txt"
     virtualenv: "{{ venv_path }}"
     virtualenv_python: python3
-    umask: 0022
+    umask: "0022"
 
 # - name: Run migrations
 #   django_manage:
