@@ -17,6 +17,7 @@
     - pip
 
 - name: Install python project
+  become: yes
   pip:
     requirements: "{{ project_path }}/backend/requirements.txt"
     virtualenv: "{{ venv_path }}"

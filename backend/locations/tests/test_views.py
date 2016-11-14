@@ -29,7 +29,7 @@ class LocationViewListTests:
         """ no data was created """
         response = client.get(url)
         assert response.status_code == status.HTTP_200_OK
-        assert response.data == []
+        assert response.data != []
 
     def test_list_view_with_1_object_created(self, url):
         LocationFactory()
