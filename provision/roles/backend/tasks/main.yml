@@ -11,7 +11,7 @@
 
 - name: Install pip packages
   become: yes
-  pip: name={{ item }} state=latest # executable=pip3
+  pip: name={{ item }} state=latest executable=pip3
   with_items:
     - virtualenv
     - pip
